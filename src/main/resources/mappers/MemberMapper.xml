@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgit.mapper.MemberMapper">
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+	
+	<insert id="insertMember">
+		insert into tbl_member (userId, userPw, userName, email) values (#{userId}, #{userPw}, #{userName}, #{email})
+	</insert>
+	
+	<select id="readMember" resultType="MemberVO">
+		select * from tbl_member where userId = #{userId}
+	</select>
+	
+	<select id="readWithPW" resultType="MemberVO">
+		select * from tbl_member where userId = #{userId} and userPw = #{userPw}
+	</select>
+	
+	<select id="listMember" resultType="MemberVO">
+		select * from tbl_member
+	</select>
+	
+	<update id="updateMember">
+		update tbl_member set userId = #{vo.userId}, userPw = #{vo.userPw}, userName = #{vo.userName}, email = #{vo.email} where userId = #{userId}
+	</update>
+	
+	<delete id="deleteMember">
+		delete from tbl_member where userId = #{userId}
+	</delete>
+</mapper>
